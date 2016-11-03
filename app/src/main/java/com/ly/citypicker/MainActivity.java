@@ -23,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
                 CityPicker cityPicker = new CityPicker.Builder(MainActivity.this).textSize(20)
                         .onlyShowProvinceAndCity(false)
-                        .confirTextColor("#000000")
+                        .confirmTextColor("#16b3f4")
                         .cancelTextColor("#000000")
                         .province("湖北省")
                         .city("黄冈市")
                         .county("红安县")
-                        .textColor(Color.parseColor("#000000"))
-                        .provinceCyclic(true)
+                        .textColor(Color.parseColor("#333333"))
+                        .provinceCyclic(false)
                         .cityCyclic(false)
                         .countyCyclic(false)
                         .visibleItemsCount(7)
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 cityPicker.setOnCityItemClickListener(new CityPicker.OnCityItemClickListener() {
                     @Override
                     public void onSelected(String... citySelected) {
-                        tvResult.setText("选择结果：\n省：" + citySelected[0] + "\n市：" + citySelected[1] + "\n县："
-                                + citySelected[2] + "\nID：" + citySelected[3]);
+                        tvResult.setText("选择结果：\n省：" + citySelected[0] + "\n市：" + citySelected[1] + "\n县：" + citySelected[2]
+                                + "\nID：" + citySelected[3]);
                     }
                 });
             }

@@ -41,19 +41,19 @@ public class CityPicker implements OnWheelChangedListener {
     private List<City> mCityList = new ArrayList<>();
     private List<County> mCountyList = new ArrayList<>();
     /**
-     * 当前省的名称
+     * 当前省市的名称
      */
     protected String mCurrentProvinceName;
     /**
-     * 当前市的名称
+     * 当前市区的名称
      */
     protected String mCurrentCityName;
     /**
-     * 当前区的名称
+     * 当前县的名称
      */
     protected String mCurrentCountyName = "";
     /**
-     * 当前区的ID
+     * 当前的ID
      */
     protected String mCurrentID = "";
     private OnCityItemClickListener listener;
@@ -82,15 +82,15 @@ public class CityPicker implements OnWheelChangedListener {
     private static final int DEF_VISIBLE_ITEMS = 7;
     private int visibleItems = DEF_VISIBLE_ITEMS;
     /**
-     * 省滚轮是否循环滚动
+     * 省市滚轮是否循环滚动
      */
     private boolean isProvinceCyclic = false;
     /**
-     * 市滚轮是否循环滚动
+     * 市区滚轮是否循环滚动
      */
     private boolean isCityCyclic = false;
     /**
-     * 区滚轮是否循环滚动
+     * 县滚轮是否循环滚动
      */
     private boolean isCountyCyclic = false;
     /**
@@ -106,15 +106,15 @@ public class CityPicker implements OnWheelChangedListener {
      */
     private String confirmTextColorStr = "#16b3f4";
     /**
-     * 第一次默认显示的省份，一般配合定位使用
+     * 第一次默认显示的省市，一般配合定位使用
      */
     private String defaultProvinceName = "北京市";
     /**
-     * 第一次默认显示的城市，一般配合定位使用
+     * 第一次默认显示的市区，一般配合定位使用
      */
     private String defaultCityName = "东城区";
     /**
-     * 第一次默认显示的区县，一般配合定位使用
+     * 第一次默认显示的县，一般配合定位使用
      */
     private String defaultCounty = "";
     /**
@@ -173,7 +173,7 @@ public class CityPicker implements OnWheelChangedListener {
             mViewCounty.setVisibility(View.VISIBLE);
         }
 
-        //初始化城市数据
+        //初始化所有地区数据
         initAllDatas(mContext);
 
         mViewProvince.addChangingListener(this);
@@ -217,15 +217,15 @@ public class CityPicker implements OnWheelChangedListener {
         private static final int DEF_VISIBLE_ITEMS = 7;
         private int visibleItems = DEF_VISIBLE_ITEMS;
         /**
-         * 省滚轮是否循环滚动
+         * 省市滚轮是否循环滚动
          */
         private boolean isProvinceCyclic = false;
         /**
-         * 市滚轮是否循环滚动
+         * 市区滚轮是否循环滚动
          */
         private boolean isCityCyclic = false;
         /**
-         * 区滚轮是否循环滚动
+         * 县滚轮是否循环滚动
          */
         private boolean isCountyCyclic = false;
         private Context mContext;
@@ -242,15 +242,15 @@ public class CityPicker implements OnWheelChangedListener {
          */
         private String confirmTextColorStr = "#16b3f4";
         /**
-         * 第一次默认显示的省份，一般配合定位，使用
+         * 第一次默认显示的省市，一般配合定位使用
          */
         private String defaultProvinceName = "北京市";
         /**
-         * 第一次默认显示的城市，一般配合定位，使用
+         * 第一次默认显示的市区，一般配合定位使用
          */
         private String defaultCityName = "东城区";
         /**
-         * 第一次默认显示的区县，一般配合定位，使用
+         * 第一次默认显示的县，一般配合定位使用
          */
         private String defaultCounty = "";
         /**
@@ -274,7 +274,7 @@ public class CityPicker implements OnWheelChangedListener {
         }
 
         /**
-         * 第一次默认的显示省份，一般配合定位，使用
+         * 第一次默认显示的省市，一般配合定位使用
          *
          * @param defaultProvinceName
          * @return
@@ -285,7 +285,7 @@ public class CityPicker implements OnWheelChangedListener {
         }
 
         /**
-         * 第一次默认得显示城市，一般配合定位，使用
+         * 第一次默认显示的市区，一般配合定位使用
          *
          * @param defaultCityName
          * @return
@@ -296,7 +296,7 @@ public class CityPicker implements OnWheelChangedListener {
         }
 
         /**
-         * 第一次默认地区显示，一般配合定位，使用
+         * 第一次默认显示的县，一般配合定位使用
          *
          * @param defaultCounty
          * @return
@@ -312,7 +312,7 @@ public class CityPicker implements OnWheelChangedListener {
          * @param color
          * @return
          */
-        public Builder confirTextColor(String color) {
+        public Builder confirmTextColor(String color) {
             this.confirmTextColorStr = color;
             return this;
         }
@@ -384,7 +384,7 @@ public class CityPicker implements OnWheelChangedListener {
         }
 
         /**
-         * 区滚轮是否循环滚动
+         * 县滚轮是否循环滚动
          *
          * @param isCountyCyclic
          * @return
@@ -413,9 +413,8 @@ public class CityPicker implements OnWheelChangedListener {
     }
 
     /**
-     * 解析省市区的JSON数据
+     * 解析所有地区JSON数据
      */
-
     protected void initAllDatas(Context context) {
         try {
             InputStreamReader inputReader = new InputStreamReader(context.getResources().getAssets().open("area.txt"));
@@ -454,7 +453,7 @@ public class CityPicker implements OnWheelChangedListener {
     }
 
     /**
-     * 更新省WheelView的信息
+     * 更新省市WheelView的信息
      */
     private void updateProvinces() {
         int provinceDefault = -1;
@@ -491,7 +490,7 @@ public class CityPicker implements OnWheelChangedListener {
     }
 
     /**
-     * 根据当前的省，更新市WheelView的信息
+     * 根据当前的省市，更新市区WheelView的信息
      */
     private void updateCities() {
         int pCurrent = mViewProvince.getCurrentItem();
@@ -532,7 +531,7 @@ public class CityPicker implements OnWheelChangedListener {
     }
 
     /**
-     * 根据当前的市，更新区WheelView的信息
+     * 根据当前的市区，更新县WheelView的信息
      */
     private void updateCounties() {
         // 清除之前的
