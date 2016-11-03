@@ -2,7 +2,7 @@
 
 
 
- ![CityPicker](sql\CityPicker.gif)
+ ![CityPicker](sql/CityPicker.gif)
 
 #### gradle引用
 
